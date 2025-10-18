@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Confirmed - Dispatch</title>
+    <title>Dispatch - Redirecting</title>
     <style>
         * {
             margin: 0;
@@ -12,8 +12,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -22,217 +22,138 @@
         }
 
         .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            padding: 60px 40px;
-            text-align: center;
             max-width: 500px;
             width: 100%;
-            position: relative;
-            overflow: hidden;
         }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+        .card {
+            background: rgba(26, 35, 50, 0.8);
+            border: 1px solid rgba(91, 159, 255, 0.2);
+            border-radius: 16px;
+            padding: 40px 24px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            border-radius: 50%;
+        .logo {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #5B9FFF 0%, #3B7FFF 100%);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
-            animation: bounceIn 0.8s ease-out;
-        }
-
-        .success-icon::after {
-            content: '✓';
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-        }
-
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            margin: 0 auto 24px;
+            font-size: 32px;
         }
 
         h1 {
-            color: #333;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
         }
 
         .subtitle {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            margin-bottom: 32px;
+            line-height: 1.5;
         }
 
-        .redirect-button {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+        button {
+            padding: 14px 24px;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
+            border-radius: 10px;
+            font-size: 15px;
             font-weight: 600;
-            border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            position: relative;
-            overflow: hidden;
+            font-family: inherit;
         }
 
-        .redirect-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+        .btn-primary {
+            background: linear-gradient(135deg, #5B9FFF 0%, #3B7FFF 100%);
+            color: white;
+            box-shadow: 0 4px 16px rgba(91, 159, 255, 0.3);
         }
 
-        .redirect-button:hover {
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 6px 24px rgba(91, 159, 255, 0.4);
         }
 
-        .redirect-button:hover::before {
-            left: 100%;
-        }
-
-        .redirect-button:active {
+        .btn-primary:active {
             transform: translateY(0);
         }
 
-        .features {
-            margin-top: 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 20px;
-        }
-
-        .feature {
-            padding: 20px;
-            background: #f8f9ff;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .feature-text {
-            color: #666;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .footer {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-            color: #999;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 40px 20px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .redirect-button {
-                padding: 12px 30px;
-                font-size: 1rem;
-            }
+        .info-text {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+            margin-top: 20px;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="success-icon"></div>
-        
-        <h1>Email Confirmed!</h1>
-        <p class="subtitle">
-            Thank you for confirming your email address. Your account is now fully activated and ready to use.
-        </p>
-        
-        <a href="#" class="redirect-button" onclick="redirectToApp()">
-            Go to App
-        </a>
-        
-        <div class="footer">
-            <p>Welcome to Dispatch! You're all set to get started.</p>
+        <div class="card">
+            <div class="logo">👮</div>
+            <h1>Dispatch</h1>
+            <p class="subtitle">Authentication successful</p>
+
+            <!--  Removed status indicator and copy button -->
+            <button class="btn-primary" id="backToAppBtn">
+                Return to Dispatch App
+            </button>
+
+            <p class="info-text">
+                If you're not redirected automatically, click the button above to return to the app.
+            </p>
         </div>
     </div>
 
     <script>
-        function redirectToApp() {
-            // Replace this URL with your actual app URL
-            const appUrl = 'com.kiyoko.dispatch:///home';
+        // Function to build the deep link with query parameters
+        function buildDeepLink() {
+            const baseDeepLink = 'com.kiyoko.dispatch:///home';
+            const currentUrl = new URL(window.location.href);
+            const queryParams = new URLSearchParams(currentUrl.search);
             
-            // You can also use relative paths like '/dashboard' or '/app'
-            // const appUrl = '/dashboard';
+            // Build the deep link with query parameters
+            let deepLink = baseDeepLink;
+            if (queryParams.toString()) {
+                deepLink += '?' + queryParams.toString();
+            }
             
-            // Add a small delay for better UX
-            setTimeout(() => {
-                window.location.href = appUrl;
-            }, 200);
+            return deepLink;
         }
 
-        // Optional: Add some interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add a subtle animation to the container
-            const container = document.querySelector('.container');
-            container.style.opacity = '0';
-            container.style.transform = 'translateY(20px)';
+        // Get the deep link
+        const deepLink = buildDeepLink();
+
+        // Handle "Return to Dispatch App" button
+        document.getElementById('backToAppBtn').addEventListener('click', function() {
+            // Try to open the deep link
+            window.location.href = deepLink;
             
-            setTimeout(() => {
-                container.style.transition = 'all 0.6s ease';
-                container.style.opacity = '1';
-                container.style.transform = 'translateY(0)';
-            }, 100);
+            // Fallback: if deep link doesn't work, show a message after 2 seconds
+            setTimeout(function() {
+                alert('Please ensure the Dispatch app is installed on your device.');
+            }, 2000);
         });
+
+        // Auto-redirect after 3 seconds
+        setTimeout(function() {
+            window.location.href = deepLink;
+        }, 3000);
+
+        // Log the deep link for debugging
+        console.log('Deep Link:', deepLink);
     </script>
 </body>
 </html>
