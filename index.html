@@ -63,6 +63,43 @@
             line-height: 1.5;
         }
 
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            padding: 12px 16px;
+            background: rgba(91, 159, 255, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(91, 159, 255, 0.2);
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(91, 159, 255, 0.3);
+            border-top-color: #5B9FFF;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .status-text {
+            color: #5B9FFF;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         button {
             padding: 14px 24px;
             border: none;
@@ -91,11 +128,26 @@
             transform: translateY(0);
         }
 
+        .btn-secondary {
+            background: rgba(91, 159, 255, 0.1);
+            color: #5B9FFF;
+            border: 1px solid rgba(91, 159, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(91, 159, 255, 0.15);
+            border-color: rgba(91, 159, 255, 0.5);
+        }
+
         .info-text {
             color: rgba(255, 255, 255, 0.4);
             font-size: 12px;
             margin-top: 20px;
             line-height: 1.6;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -106,10 +158,19 @@
             <h1>Dispatch</h1>
             <p class="subtitle">Authentication successful</p>
 
-            <!--  Removed status indicator and copy button -->
-            <button class="btn-primary" id="backToAppBtn">
-                Return to Dispatch App
-            </button>
+            <div class="status">
+                <div class="spinner"></div>
+                <span class="status-text">Preparing to redirect...</span>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" id="backToAppBtn">
+                    Return to Dispatch App
+                </button>
+                <button class="btn-secondary" id="copyLinkBtn">
+                    Copy Deep Link
+                </button>
+            </div>
 
             <p class="info-text">
                 If you're not redirected automatically, click the button above to return to the app.
@@ -145,6 +206,20 @@
             setTimeout(function() {
                 alert('Please ensure the Dispatch app is installed on your device.');
             }, 2000);
+        });
+
+        // Handle "Copy Deep Link" button
+        document.getElementById('copyLinkBtn').addEventListener('click', function() {
+            navigator.clipboard.writeText(deepLink).then(function() {
+                const btn = document.getElementById('copyLinkBtn');
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(function() {
+                    btn.textContent = originalText;
+                }, 2000);
+            }).catch(function(err) {
+                alert('Failed to copy: ' + err);
+            });
         });
 
         // Auto-redirect after 3 seconds
