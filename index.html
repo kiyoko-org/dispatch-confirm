@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -180,19 +179,22 @@
 
     <script>
         // Function to build the deep link with query parameters
-        function buildDeepLink() {
-            const baseDeepLink = 'com.kiyoko.dispatch:///home';
-            const currentUrl = new URL(window.location.href);
-            const queryParams = new URLSearchParams(currentUrl.search);
-            
-            // Build the deep link with query parameters
-            let deepLink = baseDeepLink;
-            if (queryParams.toString()) {
-                deepLink += '?' + queryParams.toString();
-            }
-            
-            return deepLink;
-        }
+         function buildDeepLink() {
+             const baseDeepLink = 'com.kiyoko.dispatch:///home';
+             const currentUrl = new URL(window.location.href);
+             const queryParams = new URLSearchParams(currentUrl.search);
+             const hash = currentUrl.hash;
+             
+             let deepLink = baseDeepLink;
+             if (hash) {
+                 deepLink += '?' + hash.substring(1);
+             }
+             if (queryParams.toString()) {
+                 deepLink += (hash ? '&' : '?') + queryParams.toString();
+             }
+             
+             return deepLink;
+         }
 
         // Get the deep link
         const deepLink = buildDeepLink();
