@@ -157,11 +157,6 @@
             <h1>Dispatch</h1>
             <p class="subtitle">Authentication successful</p>
 
-            <div class="status">
-                <div class="spinner"></div>
-                <span class="status-text">Preparing to redirect...</span>
-            </div>
-
             <div class="button-group">
                 <button class="btn-primary" id="backToAppBtn">
                     Return to Dispatch App
@@ -224,13 +219,8 @@
             });
         });
 
-        // Auto-redirect after 3 seconds
-        setTimeout(function() {
-            window.location.href = deepLink;
-        }, 3000);
-
         // Log the deep link for debugging
-        console.log('Deep Link:', deepLink);
+         console.log('Deep Link:', deepLink);
     </script>
 </body>
 </html>
